@@ -327,6 +327,39 @@ describe Game do
 				expect(game.game_over?).to be_truthy
 			end
 		end
+
+		it "Declares a draw if the grid is full, and there is no winers" do
+				game.rows = 6
+				game.cols = 7
+				game.active_player = 2
+				game.grid = 
+				[
+					[1,2,1,2,1,2,1],
+					[1,2,1,2,1,2,1],
+					[2,1,2,1,2,1,2],
+					[2,1,2,1,2,1,2],
+					[1,2,1,2,1,2,1],
+					[1,2,1,2,1,2,1]
+				]
+				var = game.game_over?
+				expect(var).to eql 3
+		end
+
+		it "Continues the game if there are no conditions" do
+				game.rows = 6
+				game.cols = 7
+				game.active_player = 2
+				game.grid = 
+				[
+					[0,0,1,2,1,2,1],
+					[1,2,1,2,1,2,1],
+					[2,1,2,1,2,1,2],
+					[2,1,2,1,2,1,2],
+					[1,2,1,2,1,2,1],
+					[1,2,1,2,1,2,1]
+				]
+				expect(game.game_over?).to be_falsey
+		end
 	end
 
 	describe "#render_grid" do
