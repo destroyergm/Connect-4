@@ -198,7 +198,40 @@ describe Game do
 		end
 	end
 
-	# TODO: check for victory conditions
+	describe "#game_over?" do
+		context "Column victory conditions" do
+			it "Declares player one as the winner" do
+				game.rows = 6
+				game.cols = 7
+				game.active_player = 1
+				game.grid = 
+				[
+					[0,0,0,0,0,0,0],
+					[0,0,1,0,0,0,0],
+					[0,0,1,0,0,0,0],
+					[0,0,1,0,0,0,0],
+					[0,0,1,0,0,0,0],
+					[0,0,0,0,0,0,0]
+				]
+				expect(game.game_over?).to be_truthy
+			end
+			it "Declares player two as the winner" do
+				game.rows = 6
+				game.cols = 7
+				game.active_player = 2
+				game.grid = 
+				[
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,2,0,0,0,0],
+					[0,0,2,0,0,0,0],
+					[0,0,2,0,0,0,0],
+					[0,0,2,0,0,0,0]
+				]
+				expect(game.game_over?).to be_truthy
+			end
+		end
+	end
 
 	describe "#render_grid" do
 		context "Renders an empty grid to the screen" do

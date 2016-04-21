@@ -30,6 +30,25 @@ class Game
 		@grid[previous][index-1] = @active_player
 	end
 
+	# Returns the id of the player who won. or 3 if it's a draw?
+	def game_over?
+		count = 0
+		# Check the columns
+		for i in 0...@cols
+			for j in 0...@rows
+				break if count == 4
+				if @grid[j][i] == @active_player
+					count += 1
+				else
+					count = 0
+				end
+			end
+		end
+
+		return @active_player if count >= 4
+		return false
+	end
+
 	def render_grid
 		for i in 0...@rows
 			print "\t\t\t"
