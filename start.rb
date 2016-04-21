@@ -14,6 +14,7 @@ loop do
 	break if t = game.game_over?
 	game.switch_player
 end
+system 'clear'
 game.render_grid
 puts "Player 1 won the game" if t == 1
 puts "Player 2 won the game" if t == 2
