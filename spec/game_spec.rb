@@ -48,4 +48,38 @@ describe Game do
 			end
 		end
 	end
+
+	describe "#render_grid" do
+		context "Renders an empty grid to the screen" do
+			it "Outputs the grid to the screen" do
+
+			game.rows = 6
+			game.cols = 7
+			game.grid = 
+			[
+				[0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0]
+			]
+			expect{game.render_grid}.to output(
+								"\t\t\t-----------------------------\n"+
+								"\t\t\t|   |   |   |   |   |   |   |\n"+
+								"\t\t\t-----------------------------\n"+
+								"\t\t\t|   |   |   |   |   |   |   |\n"+
+								"\t\t\t-----------------------------\n"+
+								"\t\t\t|   |   |   |   |   |   |   |\n"+
+								"\t\t\t-----------------------------\n"+
+								"\t\t\t|   |   |   |   |   |   |   |\n"+
+								"\t\t\t-----------------------------\n"+
+								"\t\t\t|   |   |   |   |   |   |   |\n"+
+								"\t\t\t-----------------------------\n"+
+								"\t\t\t|   |   |   |   |   |   |   |\n"+
+								"\t\t\t-----------------------------\n"+
+								"\t\t\t  1   2   3   4   5   6   7\n").to_stdout
+			end
+		end
+	end
 end
