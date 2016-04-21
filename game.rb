@@ -44,8 +44,24 @@ class Game
 				end
 			end
 		end
-
 		return @active_player if count >= 4
+
+		# Check the rows
+		count = 0
+		for i in 0...@rows
+			for j in 0...@cols
+				break if count == 4
+				if @grid[i][j] == @active_player
+					count += 1
+				else
+					count = 0
+				end
+			end
+		end
+		return @active_player if count >= 4
+
+		# TODO: Check the diagonals
+		
 		return false
 	end
 
