@@ -49,6 +49,85 @@ describe Game do
 		end
 	end
 
+	describe "#insert_into" do
+		context "It's palyer 1's turn" do
+			it "Inserts in the correct place when column is empty" do
+				game.rows = 6
+				game.cols = 7
+				game.active_player = 1
+				game.grid = 
+				[
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0]
+				]
+
+				game.insert_into(1)
+				expect(game.grid).to eql [
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[1,0,0,0,0,0,0]
+				]
+			end
+			it "Inserts in the correct place when column is not empty" do
+				game.rows = 6
+				game.cols = 7
+				game.active_player = 1
+				game.grid = 
+				[
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[1,2,1,1,2,1,1]
+				]
+
+				game.insert_into(1)
+				expect(game.grid).to eql [
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[0,0,0,0,0,0,0],
+					[1,0,0,0,0,0,0],
+					[1,2,1,1,2,1,1]
+				]
+			end
+
+			it "Should return false if move is not valid" do
+				game.rows = 6
+				game.cols = 7
+				expect(game.insert_into(-2)).to be_falsey
+			end
+
+			it "Should return false if the column is full" do
+				game.rows = 6
+				game.cols = 7
+				game.active_player = 1
+				game.grid = 
+				[
+					[2,0,0,0,0,0,0],
+					[1,0,0,0,0,0,0],
+					[2,0,0,0,0,0,0],
+					[1,0,0,0,0,0,0],
+					[1,0,0,0,0,0,0],
+					[1,2,1,1,2,1,1]
+				]
+
+				expect(game.insert_into(1)).to be_falsey
+			end
+		end
+		context "It's player 2's turn" do
+
+		end
+	end
+
 	describe "#render_grid" do
 		context "Renders an empty grid to the screen" do
 			it "Outputs the grid to the screen" do
@@ -141,6 +220,8 @@ describe Game do
 			end
 		end
 	end
+
+
 
 
 end

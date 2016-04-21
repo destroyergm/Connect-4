@@ -17,6 +17,19 @@ class Game
 		@active_player == 1 ? @active_player = 2 : @active_player = 1
 	end
 
+	def insert_into(index)
+		return false if index > @cols || index < 1
+
+		previous = -1
+		for i in 0...@rows
+			break if @grid[i][index-1] == 1 || @grid[i][index-1] == 2
+			previous = i
+		end
+
+		return false if previous == -1
+		@grid[previous][index-1] = @active_player
+	end
+
 	def render_grid
 		for i in 0...@rows
 			print "\t\t\t"
