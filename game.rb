@@ -63,3 +63,17 @@ class Game
 		print "\n"
 	end
 end
+
+# Game
+=begin
+game = Game.new
+game.start_game
+loop do
+	system 'clear'
+	game.render_grid
+	puts "It's player #{game.active_player}'s turn: "
+	turn = gets.chomp.to_i
+	game.insert_into(turn)
+	game.switch_player
+end
+=end
